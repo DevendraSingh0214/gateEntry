@@ -1,0 +1,94 @@
+<mvc:View controllerName="zgateentry.controller.FirstScreen"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m" xmlns:F="sap.ui.layout.form" xmlns:C="sap.ui.core" xmlns:Tab="sap.ui.table">
+    <Page id="page" title="{i18n>title}" class="myBackgroundStyle1" >
+         <content>
+            <Panel backgroundDesign="Transparent" id="Panel">
+                <F:SimpleForm backgroundDesign="Transparent" title="Gate Type"  id="Form1"  layout="ResponsiveGridLayout" columnsL="3" columnsXL="3" columnsM="2" editable="true">
+                    <F:content>
+                        <Label class="Label_Class" design="Bold" id="CompanyCodeLab" text="Company Code" />
+                        <ComboBox required="true" id="CompanyCode" change="PlantChangeAccordingtoCompanyCode" >
+                            <items>
+                                <C:Item id="CompanyCode_com1" text="1000" />
+                                <C:Item id="CompanyCode_com2" text="2000" />
+                            </items>
+                        </ComboBox>
+                        <Label class="Label_Class" design="Bold" id="PlantLab" text="Plant" />
+                        <ComboBox required="true" id="Plant" items="{oPlantDataModel>/aPlantData}" showSecondaryValues="true">
+                            <items>
+                                <C:ListItem id="coreListItem1" text="{oPlantDataModel>Plant}" additionalText="{oPlantDataModel>PlantName}" />
+                            </items>
+                        </ComboBox>
+                        <!-- <Input id="Name" editable="true"/> -->
+
+                        <Label class="Label_Class" design="Bold" id="Gate_Entry_TypeLab" text="Gate Entry Type" />
+                        <!-- <ComboBox required="true" id="Gate_Entry_Type" > -->
+                        <ComboBox filterSecondaryValues="true" showSecondaryValues="true" required="true" id="Gate_Entry_Type" change="Gate_Entry_TypeFunction">
+                            <items>
+                                <C:ListItem id="combo1" additionalText="DEL" text="Sales"  />
+                                <C:ListItem id="combo2" additionalText="RDEL" text="Sales Return" />
+                                <C:ListItem id="combo3" additionalText="RGP" text="Returnable" />
+                                <C:ListItem id="combo4" additionalText="NRGP" text="Non Returnable" />
+                                <C:ListItem id="combo5" additionalText="WPO" text="Purchase" />
+                                <C:ListItem id="combo6" additionalText="WPOR" text="Purchase Return" />
+                                <C:ListItem id="combo7" additionalText="SAMPL" text="Sample" />
+                                <C:ListItem id="combo8" additionalText="LOAN" text="Loan" />
+                            </items>
+                        </ComboBox>
+
+                        <Label class="Label_Class" design="Bold" id="GateEntry_NumberLab" text="Gate Entry Number" />
+                        <!-- <Input id="GateEntry_Number" editable="{oGateNumberEditableModel>/aGateNumberEditableorNot}"/> -->
+                        <Input id="GateEntry_Number" type="Number" required="{oGateNumberEditableModel>/aGateNumberEditableorNot}" editable="{oGateNumberEditableModel>/aGateNumberEditableorNot}"  maxSuggestionWidth="45%" showSuggestion="true" suggestionRows="{path : '/zgatehead', length:5000}" >
+			                <suggestionColumns>
+                                <Column id="CompanyCode_Column1">
+                                    <Label id="CompanyCode_Column_Label1" text="Gate Entry Number"/>
+                                </Column>
+                                <Column id="CompanyCode_Column2">
+                                    <Label id="CompanyCode_Column_Label2" text="Entry Type"/>
+                                </Column>
+                            </suggestionColumns>
+                            <suggestionRows>
+                                <ColumnListItem id="CompanyCode_ColumnListItem1">
+                                    <Label id="CompanyCode_ColumnListItem_Label1" text="{Gateno}" />
+                                    <Label id="CompanyCode_ColumnListItem_Label2" text="{path: 'EntryType', formatter: '.ChangeGateEntryType'}" />
+                                </ColumnListItem>
+                            </suggestionRows>
+		                </Input>
+                        <Label class="Label_Class" design="Bold" id="GateInOut_Lab" text="Gate Entry Type" />
+                        <ComboBox id="GateInOut" value="Gate In" change="" visible="{oGateInOutVisibleModel>/aGateInOutVisibleorNot}">
+                            <items>
+                                <C:Item id="Combo1" text="Gate In" />
+                                <C:Item id="Combo2" text="Gate Out" />
+                            </items>
+                        </ComboBox>
+                        <Label class="Label_Class" design="Bold" id="CreatedOn_Lab" text="Created On" />
+                        <DatePicker class="inputfieldclass" displayFormat="yyyy-MM-dd" valueFormat="yyyy-MM-dd" editable="false" id="CreatedOn" />
+
+                        <C:Title text="" id="coret3"/>
+                    </F:content>
+                </F:SimpleForm>
+                <F:SimpleForm backgroundDesign="Transparent" id="Form2" title="Select Action"  layout="ResponsiveGridLayout" columnsL="3" columnsXL="3" columnsM="2" editable="true">
+                    <F:content>
+                        <RadioButtonGroup select="onChangeAction" columns="1" id="GateEntryAction">
+                            <buttons>
+                                <RadioButton id="Create_RadioButton" text="Create" />
+                                <RadioButton id="Change_RadioButton" text="Change" />
+                                <RadioButton id="Display_RadioButton" text="Display" />
+                                <RadioButton id="GateOut_RadioButton" text="Gate Out" />
+                                <RadioButton id="Print_RadioButton" text="Print" />
+                                <RadioButton id="WeighingSlipPrint_RadioButton" text="Weighing Slip Print" />
+                            </buttons>
+                        </RadioButtonGroup>
+                    </F:content>
+                </F:SimpleForm>
+            </Panel>
+        </content>
+        <footer>
+            <Bar id="Footer_Bar" design="Footer">
+                <contentRight>
+                    <Button id="GotoNextViewButton" icon="sap-icon://BusinessSuiteInAppSymbols/icon-box-truck" text="Next" type="Emphasized" press="GotoNextScreen"/>
+                </contentRight>
+            </Bar>
+        </footer>
+    </Page>
+</mvc:View>

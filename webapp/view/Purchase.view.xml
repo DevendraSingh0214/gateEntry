@@ -1,0 +1,214 @@
+<mvc:View controllerName="zgateentry.controller.Purchase"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m" xmlns:F="sap.ui.layout.form" xmlns:C="sap.ui.core" xmlns:Tab="sap.ui.table">
+    <Page id="page"  titleAlignment="Center" >
+        <content>
+            <F:SimpleForm id="Form" layout="ResponsiveGridLayout" columnsL="3" columnsXL="3" columnsM="2" editable="true">
+                <F:content>
+                    <C:Title id="cTitle1" text="Gate Entry Details" />
+                    <Label id="GateEntryNumber_Label" text="Gate Entry No"></Label>
+                    <Input id="GateEntryNumber"></Input>
+                    <Label id="GateEntryType_Label" text="Gate Entry Type"></Label>
+                    <Input id="GateEntryType"></Input>
+                    <Label id="Plant_Label" text="Plant"></Label>
+                    <Input id="Plant"></Input>
+                    <Label id="ReportingDate_Label" text="Reporting Date"></Label>
+                    <DatePicker id="ReportingDate" displayFormat="dd-MM-YYYY" valueFormat="YYYY-MM-dd" />
+                    <Label id="ReportingTime_Label" text="Reporting Time"></Label>
+                    <TimePicker id="ReportingTime"  displayFormat="HH:mm:ss" valueFormat="HH:mm:ss" />
+                    <Label id="VehicleNo_Label" text="Vehicle No"></Label>
+                    <Input required="true" liveChange="valueStatefor_VehicleNo"  id="VehicleNo"></Input>
+                    <Label id="ChallanQty_Label" text="Challan Qty"></Label>
+                    <Input id="ChallanQty"></Input>
+                    <Label id="OperatorName_Label" text="Operator Name"></Label>
+                    <Input required="true" liveChange="valueStatefor_OperatorName"  id="OperatorName"></Input>
+                    <Label id="GateInDate_Label" text="Gate In Date"></Label>
+                    <DatePicker id="GateInDate" displayFormat="dd-MM-YYYY" valueFormat="YYYY-MM-dd" />
+                    <Label id="GateInTime_Label" text="Gate In Time"></Label>
+                    <TimePicker id="GateInTime" displayFormat="HH:mm:ss" valueFormat="HH:mm:ss" />
+                    <Label id="LRDate_Label" text="LR Date"></Label>
+                    <DatePicker id="LRDate" displayFormat="dd-MM-YYYY" valueFormat="YYYY-MM-dd" />
+                    <Label id="LRNumber_Label" text="LR Number"></Label>
+                    <Input id="LRNumber"></Input>
+                    <Label id="Remark_Label" text="Remark"></Label>
+                    <Input id="Remark"></Input>
+                    <Label id="ModeofTransport_Label" text="Mode of Transport"></Label>
+                    <Input id="ModeofTransport"></Input>
+                    <Label id="TransporterName_Label" text="Transporter Name"></Label>
+                    <Input id="TransporterName"></Input>
+
+                    <Label id="PurchaseGroup_Label"  text="Purchase Group" />
+                        <ComboBox items="{/purchasegroup}" change="attachChange" showSecondaryValues="true" id="PurchaseGroup" >
+                            <items>
+                                <C:ListItem id="PurchaseGroup_ListItem" text="{PurchasingGroup}" key="{PurchasingGroup}" additionalText="{PurchasingGroupName}" />
+                            </items>
+                        </ComboBox>
+
+                    <Label id="DriverName_Label" text="Driver Name"></Label>
+                    <Input required="true" liveChange="valueStatefor_DriverName"  id="DriverName"></Input>
+                    <Label id="DriverMobileNo_Label" text="Driver Mobile No"></Label>
+                    <Input required="true" liveChange="valueStatefor_DriverMobileNo" id="DriverMobileNo"></Input>
+
+                    <C:Title id="cTitle2" text="Safety Measures" />
+                    <Label id="DriverLicenseNo_Label" text="Driver License No"></Label>
+                    <Input id="DriverLicenseNo"></Input>
+                    <Label id="DriverLicenseExpiryDate_Label" text="Driver License Expiry Date"></Label>
+                    <DatePicker id="DriverLicenseExpiryDate" displayFormat="dd-MM-YYYY" valueFormat="YYYY-MM-dd" />
+                    <Label id="DriverAlcoholic_Label" text="Driver Alcoholic"></Label>
+                    <RadioButtonGroup columns="2" id="DriverAlcoholic">
+                        <buttons>
+                            <RadioButton id="DriverAlcoholic_RadioButton1" text="Yes" />
+                            <RadioButton id="DriverAlcoholic_RadioButton2" text="No" />
+                        </buttons>
+                    </RadioButtonGroup>
+                    <Label id="FlammableSubstance_Label" text="Flammable Substance"></Label>
+                    <RadioButtonGroup columns="2" id="FlammableSubstance">
+                        <buttons>
+                            <RadioButton id="FlammableSubstance_RadioButton1" text="Yes" />
+                            <RadioButton id="FlammableSubstance_RadioButton2" text="No" />
+                        </buttons>
+                    </RadioButtonGroup>
+                    <Label id="FireSafety_Label" text="Fire Safety"></Label>
+                    <RadioButtonGroup columns="2" id="FireSafety">
+                        <buttons>
+                            <RadioButton id="FireSafety_RadioButton1" text="Yes" />
+                            <RadioButton id="FireSafety_RadioButton2" text="No" />
+                        </buttons>
+                    </RadioButtonGroup>
+                    <Label id="ReverseHorn_Label" text="Reverse Horn"></Label>
+                    <RadioButtonGroup columns="2" id="ReverseHorn">
+                        <buttons>
+                            <RadioButton id="ReverseHorn_RadioButton1" text="Yes" />
+                            <RadioButton id="ReverseHorn_RadioButton2" text="No" />
+                        </buttons>
+                    </RadioButtonGroup>
+                    <Label id="VehicleFitnessCertificate_Label" text="Vehicle Fitness Certificate"></Label>
+                    <DatePicker id="VehicleFitnessCertificate" displayFormat="dd-MM-YYYY" valueFormat="YYYY-MM-dd" />
+                    <Label id="VehicleRCDate_Label" text="Vehicle RC Date"></Label>
+                    <DatePicker id="VehicleRCDate" displayFormat="dd-MM-YYYY" valueFormat="YYYY-MM-dd" />
+                    <Label id="VehicleInsurance_Label" text="Vehicle Insurance"></Label>
+                    <DatePicker id="VehicleInsurance" displayFormat="dd-MM-YYYY" valueFormat="YYYY-MM-dd" />
+                    <Label id="VehiclePUCNo_Label" text="Vehicle PUC No."></Label>
+                    <Input id="VehiclePUCNo"></Input>
+                    <Label id="GateOutDate_Label" text="Gate Out Date" labelFor="GateOutDate"></Label>
+                    <DatePicker id="GateOutDate" editable="false" displayFormat="dd-MM-YYYY" valueFormat="YYYY-MM-dd" />
+                    <Label id="GateOutTime_Label" text="Gate Out Time" labelFor="GateOutTime"></Label>
+                    <TimePicker id="GateOutTime" editable="false"  displayFormat="HH:mm:ss" valueFormat="HH:mm:ss" />
+                    <Label id="InvoiceNo_Label" text="Invoice No" ></Label>
+                    <Input required="true" liveChange="valueStatefor_InvoiceNo"  editable="false" submit="CheckInvoiceNumber" id="InvoiceNo"></Input>
+                    <Button id="CheckInvoiceNumberButton" text="Check" press="CheckInvoiceNumber"></Button>
+                    <Label id="InvoiceDate_Label" text="Invoice Date"></Label>
+                    <DatePicker required="true" liveChange="valueStatefor_InvoiceDate" change="valueStatefor_InvoiceDate"  id="InvoiceDate" displayFormat="dd-MM-YYYY" valueFormat="YYYY-MM-dd" />
+                    <Label id="PoNumber_Label" text="Po Number"></Label>
+                    <Input required="true"  type="Number" id="PoNumber" liveChange="valueStatefor_PoNumber"></Input>
+                    <Label id="Button_Label" ></Label>
+                    <Button text="Get" id="GetTableData" press="GetTableData"></Button>
+                    <C:Title id="cTitle3" text="Weigh Bridge Details" />
+                    <Label id="Weight_Label" text="Weight"></Label>
+                    <Input id="GrossWeight" liveChange="netWeightCalculate_byGrossWaight" placeholder="Gross Weight"></Input>
+                    <Input id="TareWeight" liveChange="netWeightCalculate_byTareWaight" placeholder="Tare Weight"></Input>
+                    <Label id="MessageStrip_Label" ></Label>
+                    <MessageStrip visible="false" id="ValidWeight_MessageStrip"  text="2323"/>
+                    <Label id="NetWaight_Label" text="Net Waight"></Label>
+                    <Input editable="false" id="NetWaight"></Input>
+                </F:content>
+            </F:SimpleForm>
+            <Tab:Table id="PurchaseGateTypeTable" rowSelectionChange="DeleteTables_SelectedRow_Button_Visible" rows="{oTableDataModel>/aTableData}" >
+                <Tab:extension>
+                    <OverflowToolbar id="Table_OverflowToolbar"  style="Clear">
+                        <ToolbarSpacer id="Table_ToolbarSpacer" />
+                        <!-- <Button id="Table_AddButton" icon="sap-icon://add" tooltip="Add Table records" press="AddSingleEmptyRow"/> -->
+                        <Button id="Table_DeleteButton" icon="sap-icon://delete" tooltip="Delete Table records" press="DeleteTables_SelectedRow"/>
+                        <Button id="Table_SaveButton" icon="sap-icon://save" tooltip="Save Table records" press="SaveGateEntry"/>
+                    </OverflowToolbar>
+                </Tab:extension>                    
+                <Tab:columns>
+                    <Tab:Column width="10rem" id="Table_tc1" >
+                        <Label id="Table_Label1" text="Po Number" />
+                        <Tab:template>
+                            <Input id="Table_Input1" type="Text" maxLength="40" editable="false" value="{oTableDataModel>PoNumber}"/>
+                        </Tab:template>
+                    </Tab:Column>
+                    <Tab:Column width="10rem" id="Table_tc2" >
+                        <Label id="Table_Label2" text="Po Line Item" />
+                        <Tab:template>
+                            <Input id="Table_Input2" type="Text" maxLength="40" editable="false" value="{oTableDataModel>PoLineItem}"/>
+                        </Tab:template>
+                    </Tab:Column>
+                    <Tab:Column width="10rem" id="Table_tc3" >
+                        <Label id="Table_Label3" text="Vender Code" />
+                        <Tab:template>
+                            <Input id="Table_Input3" type="Text" maxLength="40" editable="false" value="{oTableDataModel>VenderCode}"/>
+                        </Tab:template>
+                    </Tab:Column>
+                    <Tab:Column width="10rem" id="Table_tc4" >
+                        <Label id="Table_Label4" text="Vender Name" />
+                        <Tab:template>
+                            <Input id="Table_Input4" type="Text" maxLength="40" editable="false" value="{oTableDataModel>VenderName}"/>
+                        </Tab:template>
+                    </Tab:Column>
+                    <Tab:Column width="10rem" id="Table_tc5" >
+                        <Label id="Table_Label5" text="Material Code" />
+                        <Tab:template>
+                            <Input id="Table_Input5" type="Text" maxLength="40" editable="false" value="{oTableDataModel>MaterialCode}"/>
+                        </Tab:template>
+                    </Tab:Column>
+                    <Tab:Column width="10rem" id="Table_tc6" >
+                        <Label id="Table_Label6" text="Material Description" />
+                        <Tab:template>
+                            <Input id="Table_Input6" type="Text" maxLength="40" editable="false" value="{oTableDataModel>MaterialDescription}"/>
+                        </Tab:template>
+                    </Tab:Column>
+                    <Tab:Column width="10rem" id="Table_tc7" >
+                        <Label id="Table_Label7" text="Order Quantity" />
+                        <Tab:template>
+                            <Input id="Table_Input7" type="Text" maxLength="40" editable="false" value="{oTableDataModel>OrderQuantity}"/>
+                        </Tab:template>
+                    </Tab:Column>
+                    <Tab:Column width="10rem" id="Table_tc_TolerancePercentage" >
+                        <Label id="Table_Label_TolerancePercentage" text="Tolerance Percentage" />
+                        <Tab:template>
+                            <Input id="Table_Input_TolerancePercentage" type="Text" maxLength="40" editable="false" value="{oTableDataModel>TolerancePercentage}"/>
+                        </Tab:template>
+                    </Tab:Column>
+                    <Tab:Column width="10rem" id="Table_tc_tolerancequantity" >
+                        <Label id="Table_Label_tolerancequantity" text="Quantity With Tolerance" />
+                        <Tab:template>
+                            <Input id="Table_Input_tolerancequantity" type="Text" maxLength="40" editable="false" value="{oTableDataModel>tolerancequantity}"/>
+                        </Tab:template>
+                    </Tab:Column>
+                    <Tab:Column width="10rem" id="Table_tc8" >
+                        <Label id="Table_Label8" text="Unit Price in Po" />
+                        <Tab:template>
+                            <Input id="Table_Input8" type="Text" maxLength="40" editable="false" value="{oTableDataModel>UnitPriceinPo}"/>
+                        </Tab:template>
+                    </Tab:Column>
+                    <Tab:Column width="10rem" id="Table_tc9" >
+                        <Label id="Table_Label9" text="Gate Quantity" />
+                        <Tab:template>
+                            <Input id="Table_Input9" type="Text" valueState="{oTableDataModel>GateQuantity_ValueState}" maxLength="40" liveChange="GateQuantityLiveChange" editable="true" value="{oTableDataModel>GateQuantity}"/>
+                        </Tab:template>
+                    </Tab:Column>
+                    <Tab:Column width="10rem" id="Table_tc10" >
+                        <Label id="Table_Label10" text="Gate Done Quantity" />
+                        <Tab:template>
+                            <Input id="Table_Input10" type="Text" maxLength="40" editable="false" value="{oTableDataModel>GateDoneQuantity}"/>
+                        </Tab:template>
+                    </Tab:Column>
+                    <Tab:Column width="10rem" id="Table_tc11" >
+                        <Label id="Table_Label11" text="Unit" />
+                        <Tab:template>
+                            <Input id="Table_Input11" type="Text" maxLength="40" editable="false" value="{oTableDataModel>Unit}"/>
+                        </Tab:template>
+                    </Tab:Column>
+                    <Tab:Column width="10rem" id="Table_tc12" >
+                        <Label id="Table_Label12" text="Remarks" />
+                        <Tab:template>
+                            <Input id="Table_Input12" type="Text" maxLength="40" editable="true" value="{oTableDataModel>Remarks}"/>
+                        </Tab:template>
+                    </Tab:Column>
+                </Tab:columns>
+            </Tab:Table>
+        </content>
+    </Page>
+</mvc:View>
